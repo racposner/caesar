@@ -120,6 +120,13 @@ spec:
               mountPath: "/static-assets"
             - name: caesar-nginx-config
               mountPath: "/etc/nginx-sites"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+              initialDelaySeconds: 5
+              periodSeconds: 3
+              successThreshold: 1
       volumes:
         - name: static-assets
           emptyDir: {}
